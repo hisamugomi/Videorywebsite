@@ -1,0 +1,35 @@
+/* @font-face {
+    font-family: 'sourcesanspro';
+    font-style: normal;
+    font-weight: bold;
+    font-display: block;
+    src: url(https://design.penpot.app/fonts/sourcesanspro-bold.woff) format('woff');
+  } */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: whitesmoke;
+}
+
+
+/* Rectangle */
+.Navbar-rectangle {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 20px;
+  background-color: lightgray;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.globe {
+  padding: 20px;
+}
+
+h3 {
+  color: black;
+  z-index: 1;
+  position: relative;
+}
