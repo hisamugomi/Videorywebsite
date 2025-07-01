@@ -10,6 +10,8 @@ html, body {
   margin: 0;
   padding: 0;
   background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
 }
 
 
@@ -18,9 +20,8 @@ html, body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  padding: 20px;
+  padding-block: 20px;
   background-color: lightgray;
-  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -32,4 +33,50 @@ h3 {
   color: black;
   z-index: 1;
   position: relative;
+}
+
+h4{
+  position: relative;
+}
+.boxinthemid {
+  order: 1;
+  flex-grow: 2;
+}
+
+
+.linksinnav {
+  order: 3;
+  padding-right: 50px;
+}
+
+.First-box {
+  width: 100%;
+  height: 400px;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.titlesandstuff {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.titlesandstuff2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kokunairyuu {
+  align-self: center;
+  color: blueviolet;
+  padding-bottom: 0px;
+}
+
+.atarashiimana {
+  align-self: center;
+  color: black;
 }
