@@ -1,6 +1,9 @@
 // App.js
 import React, { useState } from 'react';
 import { Search, PlayCircle, Shield, Users, DollarSign, Landmark, Phone, Mail as MailIcon } from 'lucide-react'; // Using lucide-react for icons
+import './App.css'
+
+
 
 // Main App component
 const App = () => {
@@ -57,7 +60,8 @@ const App = () => {
       <div className="hero-pattern"></div>
       <div className="container hero-content">
         <h1 className="hero-title">
-          新しい学びの形 国内留学
+          新しい学びの形
+          国内留学
         </h1>
         <p className="hero-description">
           海外に行かなくても、日本国内で本格的な語学留学体験を。
