@@ -1,22 +1,22 @@
 /* style.css */
 
-/* Basic Resets and Variables */
+/* 基本的なリセットと変数 */
 :root {
-    --primary-blue: #2563eb; /* A vibrant blue */
-    --secondary-indigo: #4f46e5; /* A deep indigo */
-    --dark-indigo: #3730a3; /* A darker indigo for active states */
-    --light-gray: #f3f4f6; /* Very light gray background */
-    --lightest-gray: #f9fafb; /* Even lighter gray */
-    --medium-gray: #d1d5db; /* For borders and lines */
-    --text-gray-light: #4b5563; /* Lighter text color */
-    --text-gray-medium: #374151; /* Medium text color */
-    --text-gray-dark: #1f2937; /* Darkest text color */
+    --primary-blue: #2563eb; /* 鮮やかな青 */
+    --secondary-indigo: #4f46e5; /* 深いインディゴ */
+    --dark-indigo: #3730a3; /* アクティブ状態用のより暗いインディゴ */
+    --light-gray: #f3f4f6; /* 非常に明るいグレーの背景 */
+    --lightest-gray: #f9fafb; /* さらに明るいグレー */
+    --medium-gray: #d1d5db; /* 枠線や線用 */
+    --text-gray-light: #4b5563; /* 明るいテキスト色 */
+    --text-gray-medium: #374151; /* 中間のテキスト色 */
+    --text-gray-dark: #1f2937; /* 最も暗いテキスト色 */
     --white: #ffffff;
-    --accent-blue: #3b82f6; /* For specific icons/elements */
-    --accent-green: #22c55e; /* For specific icons/elements */
-    --accent-purple: #a855f7; /* For specific icons/elements */
-    --accent-yellow: #f59e0b; /* For specific icons/elements */
-    --accent-red: #ef4444; /* For specific icons/elements */
+    --accent-blue: #3b82f6; /* 特定のアイコン/要素用 */
+    --accent-green: #22c55e; /* 特定のアイコン/要素用 */
+    --accent-purple: #a855f7; /* 特定のアイコン/要素用 */
+    --accent-yellow: #f59e0b; /* 特定のアイコン/要素用 */
+    --accent-red: #ef4444; /* 特定のアイコン/要素用 */
 
     --transition-speed-fast: 0.2s;
     --transition-speed-medium: 0.3s;
@@ -36,7 +36,7 @@ body {
     flex-direction: column;
 }
 
-/* Global Container */
+/* グローバルコンテナ */
 .container {
     max-width: 1200px;
     margin-left: auto;
@@ -45,13 +45,13 @@ body {
     padding-right: 1rem;
 }
 
-/* Section Common Styles */
+/* セクション共通スタイル */
 .section {
     background-color: var(--white);
-    padding: 4rem 1rem; /* Adjust padding for sections */
+    padding: 4rem 1rem; /* セクションのパディングを調整 */
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
     border-radius: 1rem; /* rounded-xl */
-    margin: 4rem auto; /* Adjusted margin to center sections */
+    margin: 4rem auto; /* セクションを中央に配置するためのマージンを調整 */
     text-align: center;
     transition: transform var(--transition-speed-medium) ease-in-out;
 }
@@ -73,7 +73,7 @@ body {
     color: var(--text-gray-light);
     line-height: 1.6;
     margin-bottom: 2rem;
-    max-width: 800px; /* Limit width for readability */
+    max-width: 800px; /* 読みやすさのために幅を制限 */
     margin-left: auto;
     margin-right: auto;
 }
@@ -90,10 +90,10 @@ body {
     }
 }
 
-/* Buttons */
+/* ボタン */
 .button {
     padding: 0.75rem 2rem;
-    border-radius: 9999px; /* Fully rounded */
+    border-radius: 9999px; /* 完全な丸み */
     font-weight: 700;
     font-size: 1.125rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -135,7 +135,7 @@ body {
     margin-right: 0.75rem;
 }
 
-/* Navbar */
+/* ナビゲーションバー */
 .navbar {
     background: linear-gradient(to right, var(--primary-blue), var(--secondary-indigo));
     padding: 1rem 0;
@@ -149,17 +149,11 @@ body {
 
 .navbar-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* デスクトップ優先でデフォルトをrowに設定 */
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-}
-
-@media (min-width: 768px) {
-    .navbar-content {
-        flex-direction: row;
-        gap: 0;
-    }
+    position: relative; /* モバイルメニューの絶対位置指定に必要 */
 }
 
 .site-logo {
@@ -171,9 +165,9 @@ body {
     padding: 0.5rem 0.75rem;
     transition: transform var(--transition-speed-medium) ease-in-out;
     cursor: pointer;
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
-    outline: none; /* Remove default button outline */
+    background: none; /* デフォルトのボタン背景を削除 */
+    border: none; /* デフォルトのボタン枠線を削除 */
+    outline: none; /* デフォルトのボタンアウトラインを削除 */
 }
 
 .site-logo:hover {
@@ -181,34 +175,98 @@ body {
 }
 
 .site-logo:focus {
-    box-shadow: 0 0 0 2px var(--white); /* Focus ring */
+    box-shadow: 0 0 0 2px var(--white); /* フォーカスリング */
 }
 
-.nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+/* ハンバーガーアイコン */
+.hamburger-icon {
+    display: none; /* デスクトップではデフォルトで非表示 */
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1.5rem; /* アイコンサイズ用 */
+    outline: none;
+    z-index: 60; /* 他の要素の上に表示されるようにする */
 }
 
-@media (min-width: 768px) {
+@media (max-width: 767px) { /* 768px未満の画面（mdブレークポイント）のスタイル */
+    .hamburger-icon {
+        display: block; /* モバイルでハンバーガーアイコンを表示 */
+    }
+
     .nav-links {
+        display: none; /* モバイルではデフォルトでナビゲーションリンクを非表示 */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* ナビゲーションバーの下に配置 */
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to right, var(--primary-blue), var(--secondary-indigo)); /* ナビゲーションバーの背景と一致させる */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        padding: 1rem 0;
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* ドロップダウンの滑らかなトランジション */
+        transform: translateY(-10px); /* 少し上に開始 */
+        opacity: 0;
+        pointer-events: none; /* 非表示時は操作不可 */
+        visibility: hidden;
+    }
+
+    .nav-links.nav-links-open {
+        display: flex; /* メニューが開いているときにナビゲーションリンクを表示 */
+        transform: translateY(0); /* スライドダウン */
+        opacity: 1;
+        pointer-events: all; /* 表示時は操作可能 */
+        visibility: visible;
+    }
+
+    .nav-item {
+        width: calc(100% - 2rem); /* パディングを引いた全幅 */
+        text-align: center;
+        margin: 0.5rem auto; /* アイテムを中央に配置し、間隔を空ける */
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (min-width: 768px) { /* 768px以上の画面（デスクトップ）のスタイル */
+    .nav-links {
+        display: flex !important; /* デスクトップではナビゲーションリンクを常に表示 */
         flex-direction: row;
         gap: 1.5rem;
+        position: static; /* 位置指定をリセット */
+        top: auto;
+        left: auto;
+        width: auto;
+        background: none;
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+        transform: none;
+        opacity: 1;
+        pointer-events: all;
+        visibility: visible;
+    }
+
+    .nav-item {
+        padding: 0.5rem 1rem;
+        margin: 0;
     }
 }
 
 .nav-item {
     color: var(--white);
-    padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-weight: 500;
     text-decoration: none;
     transition: all var(--transition-speed-medium) ease-in-out;
     white-space: nowrap;
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
+    background: none;
+    border: none;
     cursor: pointer;
-    outline: none; /* Remove default button outline */
+    outline: none;
 }
 
 .nav-item:hover {
@@ -222,13 +280,13 @@ body {
 }
 
 .nav-item:focus {
-    box-shadow: 0 0 0 2px var(--white); /* Focus ring */
+    box-shadow: 0 0 0 2px var(--white);
 }
 
-/* Hero Section */
+/* ヒーローセクション */
 .hero-section {
     position: relative;
-    background: linear-gradient(to bottom right, var(--primary-blue), #8A2BE2); /* Stronger purple */
+    background: linear-gradient(to bottom right, var(--primary-blue), #8A2BE2);
     color: var(--white);
     padding: 5rem 1rem;
     border-bottom-left-radius: 1.5rem;
@@ -247,7 +305,7 @@ body {
     position: absolute;
     inset: 0;
     opacity: 0.1;
-    background-image: url('https://placehold.co/1200x800/FFFFFF/000000?text=Learn English');
+    background-image: url('https://placehold.co/1200x800/FFFFFF/000000?text=Abstract+Pattern');
     background-size: cover;
     background-position: center;
 }
@@ -301,9 +359,9 @@ body {
     }
 }
 
-/* What Is StudyStay Section */
+/* 国内留学とは セクション */
 .what-is-section {
-    margin-top: -4rem; /* Pulls it up over the hero section */
+    margin-top: -4rem; /* ヒーローセクションの上に引き上げる */
     position: relative;
     z-index: 20;
 }
@@ -360,7 +418,7 @@ body {
     color: var(--text-gray-light);
 }
 
-/* Experience Section */
+/* 体験セクション */
 .experience-section {
     background-color: var(--lightest-gray);
 }
@@ -408,7 +466,7 @@ body {
     padding: 1.5rem;
 }
 
-/* Testimonials Section */
+/* お客様の声セクション */
 .testimonials-section {
     background-color: var(--white);
 }
@@ -465,14 +523,14 @@ body {
     color: var(--text-gray-light);
 }
 
-/* Pricing Plans Section */
+/* 料金プランセクション */
 .pricing-plans-section {
     background-color: var(--lightest-gray);
 }
 
 .pricing-cards {
     display: grid;
-    grid-template-columns: 6fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
     align-items: center;
 }
@@ -480,13 +538,12 @@ body {
 @media (min-width: 1024px) {
     .pricing-cards {
         grid-template-columns: repeat(3, 1fr);
-        
     }
 }
 
 .pricing-card {
     background-color: var(--white);
-    padding: 0.3rem;
+    padding: 2rem;
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid var(--light-gray);
@@ -497,14 +554,6 @@ body {
     position: relative;
 }
 
-@media (min-width: 1024px) {
-  .pricing-card {
-        /* transform: scale(1.05); */
-        
-        padding: 1rem
-  }
-}
-
 .pricing-card:hover {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
     transform: scale(1.02);
@@ -512,10 +561,9 @@ body {
 
 .pricing-card.recommended {
     border-color: var(--accent-blue);
-    transform: scale(1);
+    transform: scale(1.05);
     box-shadow: 0 15px 20px rgba(0, 0, 0, 0.15);
 }
-
 
 .pricing-card.recommended:hover {
     transform: scale(1.07);
@@ -563,7 +611,7 @@ body {
 
 .feature-item {
     display: flex;
-    align-items: flex-start; /* Align icon and text at the top */
+    align-items: flex-start; /* アイコンとテキストを上揃え */
     color: var(--text-gray-medium);
     margin-bottom: 0.75rem;
 }
@@ -583,7 +631,7 @@ body {
 }
 
 .button-pricing:hover {
-    background-color: #c4c4c4; /* Darker gray on hover */
+    background-color: #c4c4c4; /* ホバーでより暗いグレー */
 }
 
 .button-pricing-recommended {
@@ -593,10 +641,10 @@ body {
 }
 
 .button-pricing-recommended:hover {
-    background-color: #1d4ed8; /* Darker blue on hover */
+    background-color: #1d4ed8; /* ホバーでより暗い青 */
 }
 
-/* Contact Info Section */
+/* お問い合わせ情報セクション */
 .contact-info-section {
     background-color: var(--white);
 }
@@ -634,7 +682,7 @@ body {
 
 .contact-item {
     display: flex;
-    align-items: flex-start; /* Align icon and text at the top */
+    align-items: flex-start; /* アイコンとテキストを上揃え */
     color: var(--text-gray-medium);
 }
 
@@ -646,7 +694,7 @@ body {
 .contact-icon.blue { color: var(--accent-blue); }
 .contact-icon.green { color: var(--accent-green); }
 .contact-icon.purple { color: var(--accent-purple); }
-.contact-icon.red { color: var(--accent-red); } /* For access icon */
+.contact-icon.red { color: var(--accent-red); } /* アクセスアイコン用 */
 
 .contact-label {
     font-weight: 600;
@@ -667,7 +715,7 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Contact Form Section */
+/* お問い合わせフォームセクション */
 .contact-form-section {
     background-color: var(--light-gray);
 }
@@ -704,17 +752,17 @@ body {
     padding: 0.75rem;
     border: 1px solid var(--medium-gray);
     border-radius: 0.5rem;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05); /* subtle inner shadow */
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05); /* 微妙な内側の影 */
     outline: none;
     transition: all var(--transition-speed-fast) ease-in-out;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    box-sizing: border-box; /* パディングと枠線を要素の合計幅と高さに含める */
 }
 
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
     border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Custom focus ring */
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* カスタムフォーカスリング */
 }
 
 .form-textarea {
@@ -723,8 +771,8 @@ body {
 }
 
 .form-select {
-    background-color: var(--white); /* Ensure background is white */
-    appearance: none; /* Remove default arrow on some browsers */
+    background-color: var(--white); /* 背景が白であることを保証 */
+    appearance: none; /* 一部のブラウザでのデフォルトの矢印を削除 */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
@@ -744,7 +792,7 @@ body {
     background-color: #1d4ed8;
 }
 
-/* Footer */
+/* フッター */
 .footer {
     background-color: var(--text-gray-dark);
     color: var(--white);
@@ -758,7 +806,7 @@ body {
 .footer-content {
     text-align: center;
     font-size: 0.875rem;
-    padding: 1rem 0; /* Add some padding for internal content */
+    padding: 1rem 0; /* 内部コンテンツにパディングを追加 */
 }
 
 .footer-links-grid {
@@ -823,7 +871,7 @@ body {
     border-color: #4b5563; /* gray-700 */
     margin: 1.5rem auto;
     width: 100%;
-    max-width: 800px; /* Constrain width */
+    max-width: 800px; /* 幅を制限 */
 }
 
 .footer-copyright {

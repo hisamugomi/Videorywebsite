@@ -1,50 +1,55 @@
 // App.js
 import React, { useState } from 'react';
-import { Search, PlayCircle, Shield, Users, DollarSign, Landmark, Phone, Mail as MailIcon } from 'lucide-react'; // Using lucide-react for icons
-import './App.css'
+// lucide-reactから必要なアイコンをインポート
+import { Search, PlayCircle, Shield, Users, DollarSign, Landmark, Phone, Mail as MailIcon, Menu, X } from 'lucide-react';
+import './app.css'; // style.cssをインポート
 
-
-
-// Main App component
+// メインのAppコンポーネント
 const App = () => {
-  // State to manage the current page view, simulating navigation
+  // 現在のページ表示を管理するステート（ルーティングをシミュレート）
   const [currentPage, setCurrentPage] = useState('home');
-  // State to manage the visibility of the mobile dropdown menu
+  // モバイルドロップダウンメニューの表示状態を管理するステート
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Utility function to scroll to a section
+  // セクションへスクロールするユーティリティ関数
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
-    setCurrentPage(id); // Update current page state for active link styling
-    setIsMenuOpen(false); // Close the menu after clicking a link
+    setCurrentPage(id); // アクティブなリンクのスタイルを更新するために現在のページステートを更新
+    setIsMenuOpen(false); // リンクをクリックしたらメニューを閉じる
   };
 
-
-  // Navbar Component
+  // ナビゲーションバーコンポーネント
   const Navbar = () => (
     <nav className="navbar">
       <div className="container navbar-content">
-        {/* Site Logo/Name */}
+        {/* サイトのロゴ/名前 */}
         <button onClick={() => scrollToSection('home')} className="site-logo">
           StudyStay Japan
         </button>
-        {/* Navigation Links */}
-        <div className="nav-links">
+
+        {/* モバイル用ハンバーガーメニューアイコン */}
+        <button className="hamburger-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {/* メニューの状態に基づいてMenuまたはXアイコンを条件付きでレンダリング */}
+          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+
+        {/* ナビゲーションリンク - デスクトップでは常に表示、モバイルでは条件付きで表示 */}
+        <div className={`nav-links ${isMenuOpen ? 'nav-links-open' : ''}`}>
           <NavItem text="国内留学とは" targetId="what-is" activePage={currentPage} onClick={scrollToSection} />
           <NavItem text="体験の様子" targetId="experience" activePage={currentPage} onClick={scrollToSection} />
           <NavItem text="生徒の声" targetId="testimonials" activePage={currentPage} onClick={scrollToSection} />
           <NavItem text="料金プラン" targetId="pricing" activePage={currentPage} onClick={scrollToSection} />
-          <NavItem text="アクセス・お問い合わせ" targetId="contact-info" activePage={currentPage} />
+          <NavItem text="アクセス・お問い合わせ" targetId="contact-info" activePage={currentPage} onClick={scrollToSection} />
           <NavItem text="無料相談" targetId="contact-form" activePage={currentPage} onClick={scrollToSection} />
         </div>
       </div>
     </nav>
   );
 
-  // Nav Item Helper Component
+  // ナビゲーションアイテムヘルパーコンポーネント
   const NavItem = ({ text, targetId, activePage, onClick }) => (
     <button
       className={`nav-item ${activePage === targetId ? 'active' : ''}`}
@@ -54,7 +59,7 @@ const App = () => {
     </button>
   );
 
-  // Hero Section
+  // ヒーローセクション
   const HeroSection = () => (
     <section id="home" className="hero-section">
       <div className="hero-pattern"></div>
@@ -79,7 +84,7 @@ const App = () => {
     </section>
   );
 
-  // "国内留学とは" Section
+  // "国内留学とは" セクション
   const WhatIsStudyStay = () => (
     <section id="what-is" className="section what-is-section">
       <div className="container">
@@ -108,7 +113,7 @@ const App = () => {
     </section>
   );
 
-  // Feature/Benefit Card Helper Component
+  // 特徴/利点カードヘルパーコンポーネント
   const FeatureBenefitCard = ({ icon, title, description }) => (
     <div className="feature-benefit-card">
       <div className="feature-icon-wrapper">{icon}</div>
@@ -117,7 +122,7 @@ const App = () => {
     </div>
   );
 
-  // "国内留学の様子" Section
+  // "国内留学の様子" セクション
   const ExperienceSection = () => (
     <section id="experience" className="section experience-section">
       <div className="container">
@@ -151,7 +156,7 @@ const App = () => {
     </section>
   );
 
-  // Experience Feature Card Helper Component
+  // 体験特徴カードヘルパーコンポーネント
   const ExperienceFeatureCard = ({ imageSrc, title, description }) => (
     <div className="experience-feature-card">
       <img src={imageSrc} alt={title} className="card-image" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/CCCCCC/666666?text=Image+Error"; }}/>
@@ -162,7 +167,7 @@ const App = () => {
     </div>
   );
 
-  // "生徒の声" Section (Testimonials)
+  // "生徒の声" セクション (お客様の声)
   const Testimonials = () => (
     <section id="testimonials" className="section testimonials-section">
       <div className="container">
@@ -191,7 +196,7 @@ const App = () => {
     </section>
   );
 
-  // Testimonial Card Helper Component
+  // お客様の声カードヘルパーコンポーネント
   const TestimonialCard = ({ name, title, rating, quote }) => (
     <div className="testimonial-card">
       <div className="star-rating">
@@ -203,7 +208,7 @@ const App = () => {
     </div>
   );
 
-  // "料金プラン" Section (Pricing Plans)
+  // "料金プラン" セクション
   const PricingPlans = () => (
     <section id="pricing" className="section pricing-plans-section">
       <div className="container">
@@ -259,7 +264,7 @@ const App = () => {
     </section>
   );
 
-  // Pricing Card Helper Component
+  // 料金カードヘルパーコンポーネント
   const PricingCard = ({ planName, duration, price, perPerson, features, isRecommended }) => (
     <div className={`pricing-card ${isRecommended ? 'recommended' : ''}`}>
       {isRecommended && (
@@ -288,7 +293,7 @@ const App = () => {
     </div>
   );
 
-  // "お問い合わせ情報" Section (Contact Info)
+  // "お問い合わせ情報" セクション
   const ContactInfoSection = () => (
     <section id="contact-info" className="section contact-info-section">
       <div className="container">
@@ -298,7 +303,7 @@ const App = () => {
         </p>
 
         <div className="contact-grid">
-          {/* Contact Information */}
+          {/* お問い合わせ情報 */}
           <div className="contact-details-card">
             <h3 className="card-title">お問い合わせ情報</h3>
             <div className="contact-item-list">
@@ -326,7 +331,7 @@ const App = () => {
                 </div>
               </div>
               <div className="contact-item">
-                <Landmark className="contact-icon red" size={24} /> {/* Reusing Landmark for access, can change if more specific icon exists */}
+                <Landmark className="contact-icon red" size={24} /> {/* アクセス用にLandmarkを再利用（より具体的なアイコンがあれば変更可能） */}
                 <div>
                   <p className="contact-label">アクセス:</p>
                   <p>JR山手線 原宿駅 徒歩3分</p>
@@ -336,11 +341,11 @@ const App = () => {
             </div>
           </div>
 
-          {/* Map Placeholder or additional info */}
+          {/* 地図のプレースホルダーまたは追加情報 */}
           <div className="map-placeholder-card">
             <img
                 src="https://placehold.co/400x300/E0F2F7/333333?text=Map+Placeholder"
-                alt="Map of location"
+                alt="場所の地図"
                 className="map-image"
                 onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x300/E0F2F7/333333?text=Map+Load+Error"; }}
             />
@@ -350,8 +355,7 @@ const App = () => {
     </section>
   );
 
-
-  // Contact Form Section
+  // お問い合わせフォームセクション
   const ContactForm = () => (
     <section id="contact-form" className="section contact-form-section">
       <div className="container">
@@ -421,7 +425,7 @@ const App = () => {
     </section>
   );
 
-  // Footer Component
+  // フッターコンポーネント
   const Footer = () => (
     <footer className="footer">
       <div className="container footer-content">
@@ -448,21 +452,20 @@ const App = () => {
     </footer>
   );
 
-
   return (
     <div className="app-container">
-      {/* Link to the external CSS file */}
+      {/* 外部CSSファイルへのリンク */}
       <link rel="stylesheet" href="style.css" />
-      {/* Google Font - Inter */}
+      {/* Googleフォント - Inter */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-      {/* Custom CSS (could also be in style.css, but kept here for animations) */}
+      {/* カスタムCSS（style.cssに含めることも可能ですが、アニメーション用にここに残しています） */}
       <style>
         {`
         body {
           font-family: 'Inter', sans-serif;
         }
-        /* Custom scrollbar for better aesthetics */
+        /* 美的感覚のためのカスタムスクロールバー */
         ::-webkit-scrollbar {
           width: 8px;
           height: 8px;
@@ -478,7 +481,7 @@ const App = () => {
         ::-webkit-scrollbar-thumb:hover {
           background: #555;
         }
-        /* Keyframe for bounce-once animation */
+        /* bounce-onceアニメーションのキーフレーム */
         @keyframes bounce-once {
           0%, 100% {
             transform: translateY(0);
@@ -498,14 +501,14 @@ const App = () => {
         }
 
         .animate-bounce-once {
-          animation: bounce-once 1.5s ease-out 1; /* Run once */
+          animation: bounce-once 1.5s ease-out 1; /* 1回実行 */
         }
 
         .animate-bounce-once.delay-200 {
             animation-delay: 0.2s;
         }
 
-        /* Keyframe for fade-in-down animation */
+        /* fade-in-downアニメーションのキーフレーム */
         @keyframes fade-in-down {
           0% {
             opacity: 0;
@@ -521,7 +524,7 @@ const App = () => {
           animation: fade-in-down 1s ease-out forwards;
         }
 
-        /* Keyframe for fade-in animation */
+        /* fade-inアニメーションのキーフレーム */
         @keyframes fade-in {
           0% {
             opacity: 0;
