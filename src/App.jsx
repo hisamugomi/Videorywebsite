@@ -1,16 +1,243 @@
 // App.js
+import SVGIcon from './assets/earth-svgrepo-com.svg?react'
 import React, { useState } from 'react';
 // lucide-reactから必要なアイコンをインポート
-import { Search, PlayCircle, Shield, Users, DollarSign, Landmark, Phone, Mail as MailIcon, Menu, X } from 'lucide-react';
+import { Search, PlayCircle, Shield, Users, DollarSign, Landmark, Phone, Mail as MailIcon, X, Menu, Link2} from 'lucide-react';
 import './app.css'; // style.cssをインポート
+// import {content} from './Prompts.jsx'
+import HeroSection from "./HeroSection.jsx" 
+// import classNames from 'classnames';
 
 // メインのAppコンポーネント
 const App = () => {
+
+  const content = {
+    ja: {
+      navbar: {
+        logo: "StudyStay Japan",
+        whatIs: "国内留学とは",
+        experience: "体験の様子",
+        testimonials: "生徒の声",
+        pricing: "料金プラン",
+        freeConsult: "無料相談",
+        languageToggle: "English", // 英語に切り替えるボタンのテキスト
+      },
+      hero: {
+        title: "新しい学びの形",
+        subtitle: "国内留学",
+        description: "海外に行かなくても、日本国内で本格的な語学留学体験を。あなたにぴったりの国内留学プログラムをマッチングします。",
+        findProgram: "プログラムを探す",
+        watchVideo: "動画で見る",
+      },
+      whatIsStudyStay: {
+        title: "国内留学とは",
+        description: "日本国内にいながら、まるで海外留学のような環境で語学学習や文化交流を体験できる新しい学習スタイルです。",
+        features: [
+          { icon: <Shield className="icon-green" size={40} />, title: "安心・安全", description: "日本国内での実施なので、初めての方でも安心して参加できます。緊急時のサポートも充実しています。" },
+          { icon: <Users className="icon-purple" size={40} />, title: "多様な交流", description: "外国人や留学生との交流を通じて、リアルな異文化体験を日本国内で実現します。" },
+          { icon: <DollarSign className="icon-yellow" size={40} />, title: "コスト効率", description: "海外留学と比較して大幅にコストを抑えながら、同等の学習効果を得ることができます。" },
+        ],
+      },
+      experience: {
+        title: "国内留学の様子",
+        description: "実際の国内留学プログラムをご紹介します。",
+        cards: [
+          { imageSrc: "https://placehold.co/400x250/F0F8FF/333333?text=Small+Class", title: "少人数制授業", description: "一人ひとりに丁寧な指導を行う少人数クラスです。" },
+          { imageSrc: "https://placehold.co/400x250/F5FFFA/333333?text=Culture+Exp", title: "文化体験", description: "料理教室や書道など、様々な文化体験ができます。" },
+          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Activities", title: "アクティビティ", description: "授業外でのアクティビティを通じて、実践的な英語を学びます。" },
+          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "宿泊施設", description: "快適で清潔な施設をご用意しており、安心してご利用いただけます。" },
+        ],
+      },
+      example: {
+        title: "国内留学の例",
+        description: "実際の国内留学プログラムの様子をご紹介します。充実した学習環境と楽しい体験をお約束します。",
+        cards: [
+          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Accomodation", title: "久米島", description: "日本にいながら英語、異文化、に触れ合い南国で今まで行ったことのない場所に行き触れ合ったことのない文化に出会うチャンス。", link:"https://www.kume-homestay.com/" },
+          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "軽井沢", description: "日常の中で自然に英語が息づく「リアルな英語体験」。暮らしの中での交流や実践を通して、実践的な英語力を育みます。 ", link:"https://karuizawahomestay.com/"},
+        ],
+      },
+      testimonials: {
+        title: "生徒の声",
+        cards: [
+          { name: "田中 美咲さん", title: "大学2年生", rating: 5, quote: "海外留学に憧れていましたが、コストや安全面で不安がありました。国内留学は本当に良い選択でした！外国人の先生方も優しく、英語に自信がつきました。" },
+          { name: "佐藤 健太さん", title: "高校3年生", rating: 5, quote: "1週間の短期プログラムでしたが、とても濃い体験ができました。同世代の仲間もできて、今でも連絡を取り合っています。将来は本格的な海外留学にもチャレンジしたいです！" },
+          { name: "山田 理恵さん", title: "会社員", rating: 5, quote: "仕事で英語が必要になり参加しました。実践的な会話練習ができて、TOEICスコアも大幅にアップ！現場でも自信を持って英語を使えるようになりました。" },
+        ],
+      },
+      pricing: {
+        title: "料金プラン",
+        description: "あなたのニーズに合わせて選べる、3つの料金プランをご用意しています。",
+        plans: [
+          { planName: "ベーシックプラン", duration: "3日間コース", price: "¥29,800", perPerson: "/人", features: ["3日間の集中英語レッスン", "宿泊費込み (2泊3日)", "食事3食付き", "基本アクティビティ"], isRecommended: false },
+          { planName: "スタンダードプラン", duration: "7日間コース", price: "¥68,000", perPerson: "/人", features: ["7日間の充実した英語プログラム", "宿泊費込み (6泊7日)", "食事3食付き", "文化体験・アクティビティ", "修了証書発行"], isRecommended: true },
+          { planName: "プレミアムプラン", duration: "14日間コース", price: "¥125,000", perPerson: "/人", features: ["14日間の本格的留学体験", "宿泊費込み (13泊14日)", "食事3食付き", "豊富な課外活動", "個別カウンセリング", "帰国後サポート"], isRecommended: false },
+        ],
+        recommendedBadge: "おすすめ",
+        selectPlan: "プランを選択",
+      },
+      contactInfo: {
+        title: "アクセス・お問い合わせ",
+        description: "ご質問やお申し込みは、お気軽にお問い合わせください。",
+        infoTitle: "お問い合わせ情報",
+        addressLabel: "住所:",
+        address: "〒150-0001 東京都渋谷区神宮前 1-11 StudyStay Japan ビル5F",
+        phoneLabel: "電話番号:",
+        phone: "03-1234-5678",
+        phoneHours: "(平日9:00-18:00)",
+        emailLabel: "メールアドレス:",
+        email: "info@studystay-japan.com",
+        accessLabel: "アクセス:",
+        access: "JR山手線 原宿駅 徒歩3分 東京メトロ「明治神宮前駅」徒歩1分",
+        mapAlt: "場所の地図",
+        mapError: "地図の読み込みエラー",
+      },
+      contactForm: {
+        title: "お問い合わせフォーム",
+        nameLabel: "お名前",
+        namePlaceholder: "お名前を入力してください",
+        emailLabel: "メールアドレス",
+        emailPlaceholder: "your.email@example.com",
+        phoneLabel: "電話番号",
+        phonePlaceholder: "090-xxxx-xxxx",
+        planLabel: "興味のあるプラン",
+        selectPlanOption: "選択してください",
+        basicPlan: "ベーシックプラン (3日間)",
+        standardPlan: "スタンダードプラン (7日間)",
+        premiumPlan: "プレミアムプラン (14日間)",
+        messageLabel: "お問い合わせ内容",
+        messagePlaceholder: "ご質問やご要望など、ご自由にご記入ください。",
+        submitButton: "送信する",
+      },
+      footer: {
+        logo: "StudyStay Japan",
+        servicesHeading: "サービス",
+        services: ["国内留学プログラム", "マッチングサービス", "カウンセリング", "アフターサポート"],
+        infoHeading: "情報",
+        info: ["よくある質問", "プライバシーポリシー", "会社概要"],
+        copyright: `© ${new Date().getFullYear()} StudyStay Japan. All rights reserved.`,
+        builtBy: "Built with ❤️ using React and CSS.",
+      },
+    },
+    en: {
+      navbar: {
+        logo: "StudyStay Japan",
+        whatIs: "What is Domestic Study Abroad?",
+        experience: "Program Experience",
+        testimonials: "Student Voices",
+        pricing: "Pricing Plans",
+        freeConsult: "Free Consultation",
+        languageToggle: "日本語", // 日本語に切り替えるボタンのテキスト
+      },
+      hero: {
+        title: "New Learning Style:",
+        subtitle: "Domestic Study Abroad",
+        description: "Experience authentic language study abroad in Japan without going overseas. We'll match you with the perfect domestic study abroad program.",
+        findProgram: "Find a Program",
+        watchVideo: "Watch Video",
+      },
+      whatIsStudyStay: {
+        title: "What is Domestic Study Abroad?",
+        description: "Domestic study abroad is a new learning style where you can experience language learning and cultural exchange in Japan, just like studying abroad.",
+        features: [
+          { icon: <Shield className="icon-green" size={40} />, title: "Safety & Security", description: "Since it's held in Japan, even first-timers can participate with peace of mind. Support during emergencies is also comprehensive." },
+          { icon: <Users className="icon-purple" size={40} />, title: "Diverse Interactions", description: "Achieve real cross-cultural experiences in Japan through interaction with foreigners and international students." },
+          { icon: <DollarSign className="icon-yellow" size={40} />, title: "Cost Efficiency", description: "Significantly reduce costs compared to overseas study abroad while achieving equivalent learning outcomes." },
+        ],
+      },
+      experience: {
+        title: "Program Experience",
+        description: "Introducing the actual domestic study abroad program. We promise a fulfilling learning environment and enjoyable experiences.",
+        cards: [
+          { imageSrc: "https://placehold.co/400x250/F0F8FF/333333?text=Small+Class", title: "Small Group Lessons", description: "Small group classes providing thorough instruction to each individual." },
+          { imageSrc: "https://placehold.co/400x250/F5FFFA/333333?text=Culture+Exp", title: "Cultural Experiences", description: "You can enjoy various cultural experiences such as cooking classes and calligraphy." },
+          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Activities", title: "Activities", description: "Learn practical English through activities outside of class." },
+          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "Accommodation", description: "Comfortable and clean facilities are available for your peace of mind." },
+        ],
+      },
+      example: { // 'example' を 'experienceExamples' に変更して、既存の 'experience' セクションと区別しやすくしました
+        title: "Examples of Domestic Study Abroad",
+        description: "Here are some examples of actual domestic study abroad programs. We promise a fulfilling learning environment and enjoyable experiences.",
+        cards: [
+          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Accomodation", title: "Kume Island", description: "An opportunity to experience English and different cultures in a tropical paradise within Japan, encountering cultures you've never met before.", link:"https://www.kume-homestay.com/" },
+          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "Karuizawa", description: "A 'real English experience' where English naturally thrives in daily life. Develop practical English skills through daily interactions and practice.", link:"https://karuizawahomestay.com/"},
+        ],
+      },
+      testimonials: {
+        title: "Student Voices",
+        cards: [
+          { name: "Misaki Tanaka", title: "University Student (2nd Year)", rating: 5, quote: "I longed for studying abroad but was worried about costs and safety. Domestic study abroad was truly a great choice! The foreign teachers were kind, and I gained confidence in my English." },
+          { name: "Kenta Sato", title: "High School Student (3rd Year)", rating: 5, quote: "It was a short one-week program, but I had a very rich experience. I made friends my age, and we still keep in touch. In the future, I want to challenge myself with a full-fledged overseas study abroad!" },
+          { name: "Rie Yamada", title: "Company Employee", rating: 5, quote: "I participated because I needed English for work. I got practical conversation practice, and my TOEIC score significantly improved! I can now use English confidently at work." },
+        ],
+      },
+      pricing: {
+        title: "Pricing Plans",
+        description: "We offer three pricing plans to suit your needs.",
+        plans: [
+          { planName: "Basic Plan", duration: "3-Day Course", price: "¥29,800", perPerson: "/person", features: ["3 days of intensive English lessons", "Accommodation included (2 nights, 3 days)", "3 meals included", "Basic activities"], isRecommended: false },
+          { planName: "Standard Plan", duration: "7-Day Course", price: "¥68,000", perPerson: "/person", features: ["7 days of comprehensive English program", "Accommodation included (6 nights, 7 days)", "3 meals included", "Cultural experiences & activities", "Certificate of completion issued"], isRecommended: true },
+          { planName: "Premium Plan", duration: "14-Day Course", price: "¥125,000", perPerson: "/person", features: ["14 days of authentic study abroad experience", "Accommodation included (13 nights, 14 days)", "3 meals included", "Abundant extracurricular activities", "Individual counseling", "Post-return support"], isRecommended: false },
+        ],
+        recommendedBadge: "Recommended",
+        selectPlan: "Select Plan",
+      },
+      contactInfo: {
+        title: "Access & Contact",
+        description: "Please feel free to contact us with any questions or applications.",
+        infoTitle: "Contact Information",
+        addressLabel: "Address:",
+        address: "5F StudyStay Japan Bldg., 1-11 Jingumae, Shibuya-ku, Tokyo 150-0001, Japan",
+        phoneLabel: "Phone Number:",
+        phone: "03-1234-5678",
+        phoneHours: "(Weekdays 9:00-18:00 JST)",
+        emailLabel: "Email Address:",
+        email: "info@studystay-japan.com",
+        accessLabel: "Access:",
+        access: "3-minute walk from Harajuku Station (JR Yamanote Line) 1-minute walk from Meiji-jingumae Station (Tokyo Metro)",
+        mapAlt: "Map of location",
+        mapError: "Map load error",
+      },
+      contactForm: {
+        title: "Contact Form",
+        nameLabel: "Your Name",
+        namePlaceholder: "Enter your name",
+        emailLabel: "Email Address",
+        emailPlaceholder: "your.email@example.com",
+        phoneLabel: "Phone Number",
+        phonePlaceholder: "090-xxxx-xxxx",
+        planLabel: "Plan of Interest",
+        selectPlanOption: "Please select",
+        basicPlan: "Basic Plan (3 days)",
+        standardPlan: "Standard Plan (7 days)",
+        premiumPlan: "Premium Plan (14 days)",
+        messageLabel: "Inquiry Details",
+        messagePlaceholder: "Please feel free to write your questions or requests.",
+        submitButton: "Send Inquiry",
+      },
+      footer: {
+        logo: "StudyStay Japan",
+        servicesHeading: "Services",
+        services: ["Domestic Study Abroad Programs", "Matching Service", "Counseling", "Aftercare Support"],
+        infoHeading: "Information",
+        info: ["FAQ", "Privacy Policy", "Company Profile"],
+        copyright: `© ${new Date().getFullYear()} StudyStay Japan. All rights reserved.`,
+        builtBy: "Built with ❤️ using React and CSS.",
+      },
+    },
+    };
   // 現在のページ表示を管理するステート（ルーティングをシミュレート）
   const [currentPage, setCurrentPage] = useState('home');
   // モバイルドロップダウンメニューの表示状態を管理するステート
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [language, setLanguage] = useState('ja'); // デフォルトは日本語
+
+    
+      const currentContent = content[language];
+
+      const toggleLanguage = () => {
+    setLanguage((prevLang) => (prevLang === 'ja' ? 'en' : 'ja'));
+  };
   // セクションへスクロールするユーティリティ関数
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -26,9 +253,12 @@ const App = () => {
     <nav className="navbar">
       <div className="container navbar-content">
         {/* サイトのロゴ/名前 */}
+        <div className='logohead'>
+          <SVGIcon width="30" height="30" className="svgicon"/>
         <button onClick={() => scrollToSection('home')} className="site-logo">
           StudyStay Japan
         </button>
+        </div>
 
         {/* モバイル用ハンバーガーメニューアイコン */}
         <button className="hamburger-icon" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -38,18 +268,21 @@ const App = () => {
 
         {/* ナビゲーションリンク - デスクトップでは常に表示、モバイルでは条件付きで表示 */}
         <div className={`nav-links ${isMenuOpen ? 'nav-links-open' : ''}`}>
-          <NavItem text="国内留学とは" targetId="what-is" activePage={currentPage} onClick={scrollToSection} />
-          <NavItem text="体験の様子" targetId="experience" activePage={currentPage} onClick={scrollToSection} />
-          <NavItem text="生徒の声" targetId="testimonials" activePage={currentPage} onClick={scrollToSection} />
-          <NavItem text="料金プラン" targetId="pricing" activePage={currentPage} onClick={scrollToSection} />
-          <NavItem text="アクセス・お問い合わせ" targetId="contact-info" activePage={currentPage} onClick={scrollToSection} />
-          <NavItem text="無料相談" targetId="contact-form" activePage={currentPage} onClick={scrollToSection} />
+          <NavItem text={currentContent.navbar.whatIs} targetId="what-is" activePage={currentPage} onClick={scrollToSection} />
+          <NavItem text={currentContent.navbar.experience} targetId="experience" activePage={currentPage} onClick={scrollToSection} />
+          <NavItem text={currentContent.navbar.testimonials} targetId="testimonials" activePage={currentPage} onClick={scrollToSection} />
+          <NavItem text={currentContent.navbar.pricing} targetId="pricing" activePage={currentPage} onClick={scrollToSection} />
+          <NavItem text={currentContent.navbar.freeConsult} targetId="contact-form" activePage={currentPage} onClick={scrollToSection} />
+          {/* 言語切り替えボタンをナビゲーションリンクに追加 */}
+          <button className="nav-item" onClick={toggleLanguage}>
+            {currentContent.navbar.languageToggle}
+          </button>
         </div>
       </div>
     </nav>
   );
 
-  // ナビゲーションアイテムヘルパーコンポーネント
+  // // ナビゲーションアイテムヘルパーコンポーネント
   const NavItem = ({ text, targetId, activePage, onClick }) => (
     <button
       className={`nav-item ${activePage === targetId ? 'active' : ''}`}
@@ -64,20 +297,21 @@ const App = () => {
     <section id="home" className="hero-section">
       <div className="hero-pattern"></div>
       <div className="container hero-content">
-        <h1 className="hero-title">
-          新しい学びの形
-          国内留学
+        <h1 className="hero-title1">
+          {currentContent.hero.title}
+        </h1>
+        <h1 className="hero-title2">
+          {currentContent.hero.subtitle}
         </h1>
         <p className="hero-description">
-          海外に行かなくても、日本国内で本格的な語学留学体験を。
-          あなたにぴったりの国内留学プログラムをマッチングします。
+          {currentContent.hero.description}
         </p>
         <div className="hero-buttons">
-          <button className="button button-primary">
-            <Search className="button-icon" size={24} />プログラムを探す
-          </button>
+          <a className="button button-primary" href='https://docs.google.com/document/d/16Q11sK813T0N-QsY7ENocIMnPuaNMdOHasVmIfuRo4U/edit?tab=t.0'target="_blank" rel="noopener noreferrer">
+            <Search className="button-icon" size={24} />{currentContent.hero.findProgram}
+          </a>
           <button className="button button-secondary">
-            <PlayCircle className="button-icon" size={24} />動画で見る
+            <PlayCircle className="button-icon" size={24} />{currentContent.hero.watchVideo}
           </button>
         </div>
       </div>
@@ -88,26 +322,19 @@ const App = () => {
   const WhatIsStudyStay = () => (
     <section id="what-is" className="section what-is-section">
       <div className="container">
-        <h2 className="section-title">国内留学とは</h2>
+        <h2 className="section-title">{currentContent.whatIsStudyStay.title}</h2>
         <p className="section-description">
-          日本国内にいながら、まるで海外留学のような環境で語学学習や文化交流を体験できる新しい学習スタイルです。
+          {currentContent.whatIsStudyStay.description}
         </p>
         <div className="feature-benefit-cards">
-          <FeatureBenefitCard
-            icon={<Shield className="icon-green" size={40} />}
-            title="安心・安全"
-            description="日本国内での実施なので、初めての方でも安心して参加できます。緊急時のサポートも充実しています。"
-          />
-          <FeatureBenefitCard
-            icon={<Users className="icon-purple" size={40} />}
-            title="多様な交流"
-            description="外国人や留学生との交流を通じて、リアルな異文化体験を日本国内で実現します。"
-          />
-          <FeatureBenefitCard
-            icon={<DollarSign className="icon-yellow" size={40} />}
-            title="コスト効率"
-            description="海外留学と比較して大幅にコストを抑えながら、同等の学習効果を得ることができます。"
-          />
+          {currentContent.whatIsStudyStay.features.map((feature, index) => (
+            <FeatureBenefitCard
+              key={index}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -124,45 +351,67 @@ const App = () => {
 
   // "国内留学の様子" セクション
   const ExperienceSection = () => (
-    <section id="experience" className="section experience-section">
-      <div className="container">
-        <h2 className="section-title">国内留学の様子</h2>
-        <p className="section-description">
-          実際の国内留学プログラムの様子をご紹介します。充実した学習環境と楽しい体験をお約束します。
-        </p>
-        <div className="experience-cards">
-          <ExperienceFeatureCard
-            imageSrc="https://placehold.co/400x250/F0F8FF/333333?text=Small+Class"
-            title="少人数制授業"
-            description="一人ひとりに丁寧な指導を行う少人数クラスです。"
-          />
-          <ExperienceFeatureCard
-            imageSrc="https://placehold.co/400x250/F5FFFA/333333?text=Culture+Exp"
-            title="文化体験"
-            description="料理教室や書道など、様々な文化体験ができます。"
-          />
-          <ExperienceFeatureCard
-            imageSrc="https://placehold.co/400x250/FFF0F5/333333?text=Activities"
-            title="アクティビティ"
-            description="授業外でのアクティビティを通じて、実践的な英語を学びます。"
-          />
-          <ExperienceFeatureCard
-            imageSrc="https://placehold.co/400x250/E6E6FA/333333?text=Accommodation"
-            title="宿泊施設"
-            description="快適で清潔な施設をご用意しており、安心してご利用いただけます。"
-          />
+    <>
+      <section id="experience" className="section experience-section">
+        <div className="container">
+          <h2 className="section-title">{currentContent.experience.title}</h2>
+          <p className="section-description">
+            {currentContent.experience.description}
+          </p>
+          <div className="experience-cards">
+            {currentContent.experience.cards.map((card, index) => (
+              <ExperienceFeatureCard
+                key={index}
+                imageSrc={card.imageSrc}
+                title={card.title}
+                description={card.description}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
 
+     
+      <section id="experience" className="section experience-section">
+        <div class="container">
+          <h2 className="section-title">{currentContent.example.title}</h2>
+          <p className="section-description">
+            {currentContent.example.description}
+          </p>
+          <div className="example-cards">
+            {currentContent.example.cards.map((card, index) => (
+              <ExampleFeatureCard
+                key={index}
+                imageSrc={card.imageSrc}
+                title={card.title}
+                description={card.description}
+                link={card.link}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
   // 体験特徴カードヘルパーコンポーネント
   const ExperienceFeatureCard = ({ imageSrc, title, description }) => (
     <div className="experience-feature-card">
-      <img src={imageSrc} alt={title} className="card-image" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/CCCCCC/666666?text=Image+Error"; }}/>
+      <img src={imageSrc} alt={title} className="card-image" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/CCCCCC/666666?text=Image+Error"; }} />
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <p className="card-description">{description}</p>
+      </div>
+    </div>
+  );
+
+  // Example Feature Card Helper Component (with external link)
+  const ExampleFeatureCard = ({ imageSrc, title, description, link, linkText }) => (
+    <div className="experience-feature-card">
+      <img src={imageSrc} alt={title} className="card-image" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/CCCCCC/666666?text=Image+Error"; }} />
+      <div className="card-content">
+        <h3 className="card-title">{title}</h3>
+        <p className="card-description">{description}</p>
+        <a href={link} className='examplebutton' target="_blank" rel="noopener noreferrer"><Link2/>{linkText}</a>
       </div>
     </div>
   );
@@ -171,31 +420,23 @@ const App = () => {
   const Testimonials = () => (
     <section id="testimonials" className="section testimonials-section">
       <div className="container">
-        <h2 className="section-title">生徒の声</h2>
+        <h2 className="section-title">{currentContent.testimonials.title}</h2>
         <div className="testimonial-cards">
-          <TestimonialCard
-            name="田中 美咲さん"
-            title="大学2年生"
-            rating={5}
-            quote="「海外留学に憧れていましたが、コストや安全面で不安がありました。国内留学は本当に良い選択でした！外国人の先生方も優しく、英語に自信がつきました。」"
-          />
-          <TestimonialCard
-            name="佐藤 健太さん"
-            title="高校3年生"
-            rating={5}
-            quote="「1週間の短期プログラムでしたが、とても濃い体験ができました。同世代の仲間もできて、今でも連絡を取り合っています。将来は本格的な海外留学にもチャレンジしたいです！」"
-          />
-          <TestimonialCard
-            name="山田 理恵さん"
-            title="会社員"
-            rating={5}
-            quote="「仕事で英語が必要になり参加しました。実践的な会話練習ができて、TOEICスコアも大幅にアップ！現場でも自信を持って英語を使えるようになりました。」"
-          />
+          {currentContent.testimonials.cards.map((testimonial, index) => (
+            <TestimonialCard
+              key={index}
+              name={testimonial.name}
+              title={testimonial.title}
+              rating={testimonial.rating}
+              quote={testimonial.quote}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 
+  // お客様の声カードヘルパーコンポーネント
   // お客様の声カードヘルパーコンポーネント
   const TestimonialCard = ({ name, title, rating, quote }) => (
     <div className="testimonial-card">
@@ -212,64 +453,35 @@ const App = () => {
   const PricingPlans = () => (
     <section id="pricing" className="section pricing-plans-section">
       <div className="container">
-        <h2 className="section-title">料金プラン</h2>
+        <h2 className="section-title">{currentContent.pricing.title}</h2>
         <p className="section-description">
-          あなたのニーズに合わせて選べる、3つの料金プランをご用意しています。
+          {currentContent.pricing.description}
         </p>
         <div className="pricing-cards">
-          <PricingCard
-            planName="ベーシックプラン"
-            duration="3日間コース"
-            price="¥29,800"
-            perPerson="/人"
-            features={[
-              "3日間の集中英語レッスン",
-              "宿泊費込み (2泊3日)",
-              "食事3食付き",
-              "基本アクティビティ"
-            ]}
-            isRecommended={false}
-          />
-          <PricingCard
-            planName="スタンダードプラン"
-            duration="7日間コース"
-            price="¥68,000"
-            perPerson="/人"
-            features={[
-              "7日間の充実した英語プログラム",
-              "宿泊費込み (6泊7日)",
-              "食事3食付き",
-              "文化体験・アクティビティ",
-              "修了証書発行"
-            ]}
-            isRecommended={true}
-          />
-          <PricingCard
-            planName="プレミアムプラン"
-            duration="14日間コース"
-            price="¥125,000"
-            perPerson="/人"
-            features={[
-              "14日間の本格的留学体験",
-              "宿泊費込み (13泊14日)",
-              "食事3食付き",
-              "豊富な課外活動",
-              "個別カウンセリング",
-              "帰国後サポート"
-            ]}
-            isRecommended={false}
-          />
+          {currentContent.pricing.plans.map((plan, index) => (
+            <PricingCard
+              key={index}
+              planName={plan.planName}
+              duration={plan.duration}
+              price={plan.price}
+              perPerson={plan.perPerson}
+              features={plan.features}
+              isRecommended={plan.isRecommended}
+              recommendedBadge={currentContent.pricing.recommendedBadge}
+              selectPlanText={currentContent.pricing.selectPlan}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 
   // 料金カードヘルパーコンポーネント
-  const PricingCard = ({ planName, duration, price, perPerson, features, isRecommended }) => (
+  const PricingCard = ({ planName, duration, price, perPerson, features, isRecommended, recommendedBadge, selectPlanText }) => (
     <div className={`pricing-card ${isRecommended ? 'recommended' : ''}`}>
       {isRecommended && (
         <div className="recommended-badge">
-          おすすめ
+          {recommendedBadge}
         </div>
       )}
       <h3 className="card-title">{planName}</h3>
@@ -288,7 +500,7 @@ const App = () => {
         ))}
       </ul>
       <button className={`button ${isRecommended ? 'button-pricing-recommended' : 'button-pricing'}`}>
-        プランを選択
+        {selectPlanText}
       </button>
     </div>
   );
@@ -297,45 +509,43 @@ const App = () => {
   const ContactInfoSection = () => (
     <section id="contact-info" className="section contact-info-section">
       <div className="container">
-        <h2 className="section-title">アクセス・お問い合わせ</h2>
+        <h2 className="section-title">{currentContent.contactInfo.title}</h2>
         <p className="section-description">
-          ご質問やお申し込みは、お気軽にお問い合わせください。
+          {currentContent.contactInfo.description}
         </p>
 
         <div className="contact-grid">
           {/* お問い合わせ情報 */}
           <div className="contact-details-card">
-            <h3 className="card-title">お問い合わせ情報</h3>
+            <h3 className="card-title">{currentContent.contactInfo.infoTitle}</h3>
             <div className="contact-item-list">
               <div className="contact-item">
                 <Landmark className="contact-icon blue" size={24} />
                 <div>
-                  <p className="contact-label">住所:</p>
-                  <p>〒150-0001 東京都渋谷区神宮前 1-11</p>
-                  <p>StudyStay Japan ビル5F</p>
+                  <p className="contact-label">{currentContent.contactInfo.addressLabel}</p>
+                  <p>{currentContent.contactInfo.address}</p>
                 </div>
               </div>
               <div className="contact-item">
                 <Phone className="contact-icon green" size={24} />
                 <div>
-                  <p className="contact-label">電話番号:</p>
-                  <p>03-1234-5678</p>
-                  <p>(平日9:00-18:00)</p>
+                  <p className="contact-label">{currentContent.contactInfo.phoneLabel}</p>
+                  <p>{currentContent.contactInfo.phone}</p>
+                  <p>{currentContent.contactInfo.phoneHours}</p>
                 </div>
               </div>
               <div className="contact-item">
                 <MailIcon className="contact-icon purple" size={24} />
                 <div>
-                  <p className="contact-label">メールアドレス:</p>
-                  <p>info@studystay-japan.com</p>
+                  <p className="contact-label">{currentContent.contactInfo.emailLabel}</p>
+                  <p>{currentContent.contactInfo.email}</p>
                 </div>
               </div>
               <div className="contact-item">
                 <Landmark className="contact-icon red" size={24} /> {/* アクセス用にLandmarkを再利用（より具体的なアイコンがあれば変更可能） */}
                 <div>
-                  <p className="contact-label">アクセス:</p>
-                  <p>JR山手線 原宿駅 徒歩3分</p>
-                  <p>東京メトロ「明治神宮前駅」徒歩1分</p>
+                  <p className="contact-label">{currentContent.contactInfo.accessLabel}</p>
+                  <p>{currentContent.contactInfo.access}</p>
                 </div>
               </div>
             </div>
@@ -344,10 +554,10 @@ const App = () => {
           {/* 地図のプレースホルダーまたは追加情報 */}
           <div className="map-placeholder-card">
             <img
-                src="https://placehold.co/400x300/E0F2F7/333333?text=Map+Placeholder"
-                alt="場所の地図"
-                className="map-image"
-                onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x300/E0F2F7/333333?text=Map+Load+Error"; }}
+              src="https://placehold.co/400x300/E0F2F7/333333?text=Map+Placeholder"
+              alt={currentContent.contactInfo.mapAlt}
+              className="map-image"
+              onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x300/E0F2F7/333333?text=" + encodeURIComponent(currentContent.contactInfo.mapError); }}
             />
           </div>
         </div>
@@ -359,66 +569,66 @@ const App = () => {
   const ContactForm = () => (
     <section id="contact-form" className="section contact-form-section">
       <div className="container">
-        <h2 className="section-title">お問い合わせフォーム</h2>
+        <h2 className="section-title">{currentContent.contactForm.title}</h2>
         <form className="contact-form-layout">
           <div className="form-group">
-            <label htmlFor="name" className="form-label">お名前</label>
+            <label htmlFor="name" className="form-label">{currentContent.contactForm.nameLabel}</label>
             <input
               type="text"
               id="name"
               name="name"
               className="form-input"
-              placeholder="お名前を入力してください"
+              placeholder={currentContent.contactForm.namePlaceholder}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email" className="form-label">メールアドレス</label>
+            <label htmlFor="email" className="form-label">{currentContent.contactForm.emailLabel}</label>
             <input
               type="email"
               id="email"
               name="email"
               className="form-input"
-              placeholder="your.email@example.com"
+              placeholder={currentContent.contactForm.emailPlaceholder}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="phone" className="form-label">電話番号</label>
+            <label htmlFor="phone" className="form-label">{currentContent.contactForm.phoneLabel}</label>
             <input
               type="tel"
               id="phone"
               name="phone"
               className="form-input"
-              placeholder="090-xxxx-xxxx"
+              placeholder={currentContent.contactForm.phonePlaceholder}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="plan" className="form-label">興味のあるプラン</label>
+            <label htmlFor="plan" className="form-label">{currentContent.contactForm.planLabel}</label>
             <select
               id="plan"
               name="plan"
               className="form-input form-select"
             >
-              <option value="">選択してください</option>
-              <option value="basic">ベーシックプラン (3日間)</option>
-              <option value="standard">スタンダードプラン (7日間)</option>
-              <option value="premium">プレミアムプラン (14日間)</option>
+              <option value="">{currentContent.contactForm.selectPlanOption}</option>
+              <option value="basic">{currentContent.contactForm.basicPlan}</option>
+              <option value="standard">{currentContent.contactForm.standardPlan}</option>
+              <option value="premium">{currentContent.contactForm.premiumPlan}</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="message" className="form-label">お問い合わせ内容</label>
+            <label htmlFor="message" className="form-label">{currentContent.contactForm.messageLabel}</label>
             <textarea
               id="message"
               name="message"
               rows="5"
               className="form-input form-textarea"
-              placeholder="ご質問やご要望など、ご自由にご記入ください。"
+              placeholder={currentContent.contactForm.messagePlaceholder}
             ></textarea>
           </div>
           <button
             type="submit"
             className="button button-submit"
           >
-            送信する
+            {currentContent.contactForm.submitButton}
           </button>
         </form>
       </div>
@@ -430,120 +640,39 @@ const App = () => {
     <footer className="footer">
       <div className="container footer-content">
         <div className="footer-links-grid">
-            <div className="footer-logo">StudyStay Japan</div>
-            <div className="footer-column">
-                <h4 className="footer-heading">サービス</h4>
-                <a href="#what-is" onClick={() => scrollToSection('what-is')} className="footer-link">国内留学プログラム</a>
-                <a href="#" className="footer-link">マッチングサービス</a>
-                <a href="#" className="footer-link">カウンセリング</a>
-                <a href="#" className="footer-link">アフターサポート</a>
-            </div>
-            <div className="footer-column">
-                <h4 className="footer-heading">情報</h4>
-                <a href="#" className="footer-link">よくある質問</a>
-                <a href="#" className="footer-link">プライバシーポリシー</a>
-                <a href="#" className="footer-link">会社概要</a>
-            </div>
+          <div className="footer-logo">{currentContent.footer.logo}</div>
+          <div className="footer-column">
+            <h4 className="footer-heading">{currentContent.footer.servicesHeading}</h4>
+            {currentContent.footer.services.map((service, index) => (
+              <a key={index} href="#" className="footer-link">{service}</a>
+            ))}
+          </div>
+          <div className="footer-column">
+            <h4 className="footer-heading">{currentContent.footer.infoHeading}</h4>
+            {currentContent.footer.info.map((infoItem, index) => (
+              <a key={index} href="#" className="footer-link">{infoItem}</a>
+            ))}
+          </div>
         </div>
         <hr className="footer-divider" />
-        <p className="footer-copyright">&copy; {new Date().getFullYear()} StudyStay Japan. All rights reserved.</p>
-        <p className="footer-built-by">Built with ❤️ using React and CSS.</p>
+        <p className="footer-copyright">{currentContent.footer.copyright}</p>
+        <p className="footer-built-by">{currentContent.footer.builtBy}</p>
       </div>
     </footer>
   );
 
   return (
     <div className="app-container">
-      {/* 外部CSSファイルへのリンク */}
-      <link rel="stylesheet" href="style.css" />
       {/* Googleフォント - Inter */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-      {/* カスタムCSS（style.cssに含めることも可能ですが、アニメーション用にここに残しています） */}
-      <style>
-        {`
-        body {
-          font-family: 'Inter', sans-serif;
-        }
-        /* 美的感覚のためのカスタムスクロールバー */
-        ::-webkit-scrollbar {
-          width: 8px;
-          height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #888;
-          border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #555;
-        }
-        /* bounce-onceアニメーションのキーフレーム */
-        @keyframes bounce-once {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          20% {
-            transform: translateY(-6px);
-          }
-          40% {
-            transform: translateY(0);
-          }
-          60% {
-            transform: translateY(-3px);
-          }
-          80% {
-            transform: translateY(0);
-          }
-        }
+      {/* カスタムCSS（style.cssの内容をここに統合） */}
+      
 
-        .animate-bounce-once {
-          animation: bounce-once 1.5s ease-out 1; /* 1回実行 */
-        }
-
-        .animate-bounce-once.delay-200 {
-            animation-delay: 0.2s;
-        }
-
-        /* fade-in-downアニメーションのキーフレーム */
-        @keyframes fade-in-down {
-          0% {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in-down {
-          animation: fade-in-down 1s ease-out forwards;
-        }
-
-        /* fade-inアニメーションのキーフレーム */
-        @keyframes fade-in {
-          0% {
-            opacity: 0;
-          }
-          100% {
-            opacity: 1;
-          }
-        }
-
-        .animate-fade-in {
-          animation: fade-in 1.5s ease-out forwards;
-        }
-        `}
-      </style>
-
-      <Navbar />
+      <Navbar/>
 
       <main className="main-content">
-        <HeroSection />
+        <HeroSection currentContent={currentContent}/>
         <WhatIsStudyStay />
         <ExperienceSection />
         <Testimonials />

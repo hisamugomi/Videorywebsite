@@ -145,6 +145,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 50;
+    justify-content: space-between;
 }
 
 .navbar-content {
@@ -156,23 +157,34 @@ body {
     position: relative; /* モバイルメニューの絶対位置指定に必要 */
 }
 
+.logohead {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  order: 0;
+}
+
 .site-logo {
     color: var(--white);
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: 800;
     letter-spacing: 0.05em;
     border-radius: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    transition: transform var(--transition-speed-medium) ease-in-out;
+    /* transition: transform var(--transition-speed-medium) ease-in-out; */
+    
     cursor: pointer;
     background: none; /* デフォルトのボタン背景を削除 */
     border: none; /* デフォルトのボタン枠線を削除 */
     outline: none; /* デフォルトのボタンアウトラインを削除 */
+  }
+  
+  .svgicon {
+  padding-right: 5px;
 }
 
-.site-logo:hover {
+/* .site-logo:hover {
     transform: scale(1.05);
-}
+} */
 
 .site-logo:focus {
     box-shadow: 0 0 0 2px var(--white); /* フォーカスリング */
@@ -197,6 +209,7 @@ body {
     }
 
     .nav-links {
+      order: 3;
         display: none; /* モバイルではデフォルトでナビゲーションリンクを非表示 */
         flex-direction: column;
         position: absolute;
@@ -235,7 +248,7 @@ body {
     .nav-links {
         display: flex !important; /* デスクトップではナビゲーションリンクを常に表示 */
         flex-direction: row;
-        gap: 1.5rem;
+        gap: 2px;
         position: static; /* 位置指定をリセット */
         top: auto;
         left: auto;
@@ -251,7 +264,7 @@ body {
     }
 
     .nav-item {
-        padding: 0.5rem 1rem;
+        padding: 0.4rem 0.8rem;
         margin: 0;
     }
 }
@@ -271,7 +284,7 @@ body {
 
 .nav-item:hover {
     background-color: var(--secondary-indigo);
-    transform: scale(1.05);
+    /* transform: scale(1.05); */
 }
 
 .nav-item.active {
@@ -305,8 +318,8 @@ body {
     position: absolute;
     inset: 0;
     opacity: 0.1;
-    background-image: url('https://placehold.co/1200x800/FFFFFF/000000?text=Abstract+Pattern');
-    background-size: cover;
+background: #2A7B9B;
+background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);    background-size: cover;
     background-position: center;
 }
 
@@ -314,12 +327,23 @@ body {
     position: relative;
     z-index: 10;
     text-align: center;
+  }
+  
+  .hero-title1 {
+    font-size: 2.7rem;
+    font-weight: 800;
+    line-height: 0.8;
+    margin-bottom: 0.01rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fade-in-down 1s ease-out forwards;
 }
 
-.hero-title {
-    font-size: 2.5rem;
+.hero-title2 {
+    color: rgb(252, 220, 78);
+    font-size: 2.7rem;
     font-weight: 800;
-    line-height: 1.2;
+    line-height: 0.8;
+    padding-bottom: 20px;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     animation: fade-in-down 1s ease-out forwards;
@@ -332,15 +356,17 @@ body {
 }
 
 .hero-description {
-    font-size: 1.125rem;
+    font-size: 1rem;
     margin-bottom: 2rem;
+    padding-inline: 3rem;
     opacity: 0.9;
     animation: fade-in 1.5s ease-out forwards;
 }
 
 @media (min-width: 768px) {
     .hero-description {
-        font-size: 1.5rem;
+      padding-inline: 13rem;
+        font-size: 1.125rem;
     }
 }
 
@@ -441,6 +467,24 @@ body {
     }
 }
 
+.example-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .example-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .example-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .experience-feature-card {
     background-color: var(--white);
     border-radius: 0.75rem;
@@ -454,6 +498,18 @@ body {
 .experience-feature-card:hover {
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
     transform: scale(1.05);
+}
+
+.examplebutton {
+      padding: 0.75rem 2rem;
+    border-radius: 9999px; /* 完全な丸み */
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    background-color: var(--primary-blue);
+    display: inline-flex;
 }
 
 .card-image {
