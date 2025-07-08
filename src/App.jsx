@@ -26,7 +26,7 @@ const App = () => {
         title: "新しい学びの形",
         subtitle: "国内留学",
         description: "海外に行かなくても、日本国内で本格的な語学留学体験を。あなたにぴったりの国内留学プログラムをマッチングします。",
-        findProgram: "プログラムを探す",
+        findProgram: "こちらから",
         watchVideo: "動画で見る",
       },
       whatIsStudyStay: {
@@ -132,7 +132,7 @@ const App = () => {
         title: "New Learning Style:",
         subtitle: "Domestic Study Abroad",
         description: "Experience authentic language study abroad in Japan without going overseas. We'll match you with the perfect domestic study abroad program.",
-        findProgram: "Find a Program",
+        findProgram: "Book a 1 on 1 meeting",
         watchVideo: "Watch Video",
       },
       whatIsStudyStay: {
@@ -271,7 +271,7 @@ const App = () => {
           <NavItem text={currentContent.navbar.whatIs} targetId="what-is" activePage={currentPage} onClick={scrollToSection} />
           <NavItem text={currentContent.navbar.experience} targetId="experience" activePage={currentPage} onClick={scrollToSection} />
           <NavItem text={currentContent.navbar.testimonials} targetId="testimonials" activePage={currentPage} onClick={scrollToSection} />
-          <NavItem text={currentContent.navbar.pricing} targetId="pricing" activePage={currentPage} onClick={scrollToSection} />
+          {/* <NavItem text={currentContent.navbar.pricing} targetId="pricing" activePage={currentPage} onClick={scrollToSection} /> */}
           <NavItem text={currentContent.navbar.freeConsult} targetId="contact-form" activePage={currentPage} onClick={scrollToSection} />
           {/* 言語切り替えボタンをナビゲーションリンクに追加 */}
           <button className="nav-item" onClick={toggleLanguage}>
@@ -306,14 +306,14 @@ const App = () => {
         <p className="hero-description">
           {currentContent.hero.description}
         </p>
-        <div className="hero-buttons">
+        {/* <div className="hero-buttons">
           <a className="button button-primary" href='https://docs.google.com/document/d/16Q11sK813T0N-QsY7ENocIMnPuaNMdOHasVmIfuRo4U/edit?tab=t.0'target="_blank" rel="noopener noreferrer">
             <Search className="button-icon" size={24} />{currentContent.hero.findProgram}
           </a>
           <button className="button button-secondary">
             <PlayCircle className="button-icon" size={24} />{currentContent.hero.watchVideo}
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
@@ -570,67 +570,9 @@ const App = () => {
     <section id="contact-form" className="section contact-form-section">
       <div className="container">
         <h2 className="section-title">{currentContent.contactForm.title}</h2>
-        <form className="contact-form-layout">
-          <div className="form-group">
-            <label htmlFor="name" className="form-label">{currentContent.contactForm.nameLabel}</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="form-input"
-              placeholder={currentContent.contactForm.namePlaceholder}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">{currentContent.contactForm.emailLabel}</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="form-input"
-              placeholder={currentContent.contactForm.emailPlaceholder}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone" className="form-label">{currentContent.contactForm.phoneLabel}</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              className="form-input"
-              placeholder={currentContent.contactForm.phonePlaceholder}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="plan" className="form-label">{currentContent.contactForm.planLabel}</label>
-            <select
-              id="plan"
-              name="plan"
-              className="form-input form-select"
-            >
-              <option value="">{currentContent.contactForm.selectPlanOption}</option>
-              <option value="basic">{currentContent.contactForm.basicPlan}</option>
-              <option value="standard">{currentContent.contactForm.standardPlan}</option>
-              <option value="premium">{currentContent.contactForm.premiumPlan}</option>
-            </select>
-          </div>
-          <div className="form-group">
-            <label htmlFor="message" className="form-label">{currentContent.contactForm.messageLabel}</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              className="form-input form-textarea"
-              placeholder={currentContent.contactForm.messagePlaceholder}
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="button button-submit"
-          >
-            {currentContent.contactForm.submitButton}
-          </button>
-        </form>
+        <a className="button button-primary" href='https://docs.google.com/document/d/16Q11sK813T0N-QsY7ENocIMnPuaNMdOHasVmIfuRo4U/edit?tab=t.0'target="_blank" rel="noopener noreferrer">
+            <Link2 className="button-icon" size={24} />{currentContent.hero.findProgram}
+          </a>
       </div>
     </section>
   );
@@ -676,7 +618,7 @@ const App = () => {
         <WhatIsStudyStay />
         <ExperienceSection />
         <Testimonials />
-        <PricingPlans />
+        {/* <PricingPlans /> */}
         <ContactInfoSection />
         <ContactForm />
       </main>
