@@ -332,8 +332,8 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
   .hero-title1 {
     font-size: 2.7rem;
     font-weight: 800;
-    line-height: 0.8;
-    margin-bottom: 0.01rem;
+    line-height: 0.9;
+    margin-bottom: 0.1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     animation: fade-in-down 1s ease-out forwards;
 }
@@ -342,7 +342,7 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
     color: rgb(252, 220, 78);
     font-size: 2.7rem;
     font-weight: 800;
-    line-height: 0.8;
+    line-height: 0.9;
     padding-bottom: 20px;
     margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -388,21 +388,34 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
 /* 国内留学とは セクション */
 .what-is-section {
     margin-top: -4rem; /* ヒーローセクションの上に引き上げる */
-    position: relative;
+    display: flex;
+    grid-template-columns: auto;
+    justify-content: center;
     z-index: 20;
+}
+
+@media (min-width: 640px) {
+
 }
 
 .feature-benefit-cards {
     display: grid;
     grid-template-columns: 1fr;
+    /* display: flex;
+    justify-content: center; */
     gap: 2rem;
 }
 
+
 @media (min-width: 768px) {
     .feature-benefit-cards {
-        grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
     }
-}
+  .feature-benefit-card{
+    width: 14rem;
+  }}
+
 
 .feature-benefit-card {
     background-color: var(--lightest-gray);
@@ -412,6 +425,7 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
     border: 1px solid var(--light-gray);
     transition: all var(--transition-speed-medium) ease-in-out;
     text-align: center;
+
 }
 
 .feature-benefit-card:hover {
@@ -450,12 +464,23 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
 }
 
 .experience-cards {
-    display: grid;
-    grid-template-columns: 1fr;
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+    display: flex;
+    justify-content: center;
     gap: 2rem;
 }
 
-@media (min-width: 768px) {
+.card-image-experience-feature {
+    border-radius: 8px;
+  width: 100%;
+    height: 12rem; /* h-48 */
+    object-fit: cover;
+    
+}
+
+/*
+ @media (min-width: 768px) {
     .experience-cards {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -463,9 +488,9 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
 
 @media (min-width: 1024px) {
     .experience-cards {
-        grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(4, 1fr);
     }
-}
+} */
 
 .example-cards {
     display: grid;
@@ -493,6 +518,7 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
     overflow: hidden;
     transition: all var(--transition-speed-medium) ease-in-out;
     text-align: center;
+
 }
 
 .experience-feature-card:hover {
@@ -505,7 +531,7 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
     border-radius: 9999px; /* 完全な丸み */
     font-weight: 700;
     font-size: 1.125rem;
-    color: black;
+    color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: none;
     background-color: var(--primary-blue);
@@ -724,7 +750,7 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
 .contact-details-card,
 .map-placeholder-card {
     background-color: var(--lightest-gray);
-    padding: 2rem;
+    padding: 0.5;
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--light-gray);

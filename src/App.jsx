@@ -2,10 +2,11 @@
 import SVGIcon from './assets/earth-svgrepo-com.svg?react'
 import React, { useState } from 'react';
 // lucide-reactから必要なアイコンをインポート
-import { Search, PlayCircle, Shield, Users, DollarSign, Landmark, Phone, Mail as MailIcon, X, Menu, Link2} from 'lucide-react';
+import { Search, PlayCircle, Shield, Users, MapPinHouse, DollarSign, Landmark, Phone, Mail as MailIcon, X, Menu, Link2} from 'lucide-react';
 import './app.css'; // style.cssをインポート
 // import {content} from './Prompts.jsx'
 import HeroSection from "./HeroSection.jsx" 
+import ryugakuSenpai from "./assets/スクリーンショット 2025-07-09 093311.png"
 // import classNames from 'classnames';
 
 // メインのAppコンポーネント
@@ -33,19 +34,16 @@ const App = () => {
         title: "国内留学とは",
         description: "日本国内にいながら、まるで海外留学のような環境で語学学習や文化交流を体験できる新しい学習スタイルです。",
         features: [
-          { icon: <Shield className="icon-green" size={40} />, title: "安心・安全", description: "日本国内での実施なので、初めての方でも安心して参加できます。緊急時のサポートも充実しています。" },
-          { icon: <Users className="icon-purple" size={40} />, title: "多様な交流", description: "外国人や留学生との交流を通じて、リアルな異文化体験を日本国内で実現します。" },
-          { icon: <DollarSign className="icon-yellow" size={40} />, title: "コスト効率", description: "海外留学と比較して大幅にコストを抑えながら、同等の学習効果を得ることができます。" },
+          { icon: <MapPinHouse className="icon-green" size={40} />, title: "日本にいながら海外体験", description: "日本国内で英語の環境に。" },
+          { icon: <Users className="icon-purple" size={40} />, title: "12歳からできる留学体験", description: "日本国内で実施するため、安心安全に早くから英語の環境へ" },
+          // { icon: <DollarSign className="icon-yellow" size={40} />, title: "コスト効率", description: "海外留学と比較して大幅にコストを抑えながら、同等の学習効果を得ることができます。" },
         ],
       },
       experience: {
-        title: "国内留学の様子",
-        description: "実際の国内留学プログラムをご紹介します。",
+        title: "他に留学につながるもの",
+        description: "ポッドキャスト、イベント、インスタグラムもしています！",
         cards: [
-          { imageSrc: "https://placehold.co/400x250/F0F8FF/333333?text=Small+Class", title: "少人数制授業", description: "一人ひとりに丁寧な指導を行う少人数クラスです。" },
-          { imageSrc: "https://placehold.co/400x250/F5FFFA/333333?text=Culture+Exp", title: "文化体験", description: "料理教室や書道など、様々な文化体験ができます。" },
-          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Activities", title: "アクティビティ", description: "授業外でのアクティビティを通じて、実践的な英語を学びます。" },
-          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "宿泊施設", description: "快適で清潔な施設をご用意しており、安心してご利用いただけます。" },
+          { imageSrc: ryugakuSenpai, title: "ポッドキャスト", description: "私たちが作っているポッドキャストもぜひ聞いてみてください！", link:"https://open.spotify.com/show/2vUNaAl1dqYFfzONyGGQxl?si=8g0jREPLSXGqrr7fHDuFJw&fbclid=PAZXh0bgNhZW0CMTEAAafxNtpAvKFRDM9HREaxmoLmEsctDKjVGxLbTDjCeXUcMSxNXo9btJL6Sb_zZQ_aem_AerUO8rJ9OCFK059nolUXQ&nd=1&dlsi=c865c31463f14bed"},
         ],
       },
       example: {
@@ -59,9 +57,7 @@ const App = () => {
       testimonials: {
         title: "生徒の声",
         cards: [
-          { name: "田中 美咲さん", title: "大学2年生", rating: 5, quote: "海外留学に憧れていましたが、コストや安全面で不安がありました。国内留学は本当に良い選択でした！外国人の先生方も優しく、英語に自信がつきました。" },
-          { name: "佐藤 健太さん", title: "高校3年生", rating: 5, quote: "1週間の短期プログラムでしたが、とても濃い体験ができました。同世代の仲間もできて、今でも連絡を取り合っています。将来は本格的な海外留学にもチャレンジしたいです！" },
-          { name: "山田 理恵さん", title: "会社員", rating: 5, quote: "仕事で英語が必要になり参加しました。実践的な会話練習ができて、TOEICスコアも大幅にアップ！現場でも自信を持って英語を使えるようになりました。" },
+          { name: "Coming soon", title: "Coming soon", rating: 5, quote: "Coming Soon" },
         ],
       },
       pricing: {
@@ -79,17 +75,17 @@ const App = () => {
         title: "アクセス・お問い合わせ",
         description: "ご質問やお申し込みは、お気軽にお問い合わせください。",
         infoTitle: "お問い合わせ情報",
-        addressLabel: "住所:",
-        address: "〒150-0001 東京都渋谷区神宮前 1-11 StudyStay Japan ビル5F",
-        phoneLabel: "電話番号:",
-        phone: "03-1234-5678",
-        phoneHours: "(平日9:00-18:00)",
+        // addressLabel: "住所:",
+        // address: "〒150-0001 東京都渋谷区神宮前 1-11 StudyStay Japan ビル5F",
+        // phoneLabel: "電話番号:",
+        // phone: "03-1234-5678",
+        // phoneHours: "(平日9:00-18:00)",
         emailLabel: "メールアドレス:",
         email: "info@studystay-japan.com",
-        accessLabel: "アクセス:",
-        access: "JR山手線 原宿駅 徒歩3分 東京メトロ「明治神宮前駅」徒歩1分",
-        mapAlt: "場所の地図",
-        mapError: "地図の読み込みエラー",
+        // accessLabel: "アクセス:",
+        // access: "JR山手線 原宿駅 徒歩3分 東京メトロ「明治神宮前駅」徒歩1分",
+        // mapAlt: "場所の地図",
+        // mapError: "地図の読み込みエラー",
       },
       contactForm: {
         title: "お問い合わせフォーム",
@@ -110,12 +106,12 @@ const App = () => {
       },
       footer: {
         logo: "StudyStay Japan",
-        servicesHeading: "サービス",
-        services: ["国内留学プログラム", "マッチングサービス", "カウンセリング", "アフターサポート"],
-        infoHeading: "情報",
-        info: ["よくある質問", "プライバシーポリシー", "会社概要"],
-        copyright: `© ${new Date().getFullYear()} StudyStay Japan. All rights reserved.`,
-        builtBy: "Built with ❤️ using React and CSS.",
+        // servicesHeading: "サービス",
+        // services: ["国内留学プログラム", "マッチングサービス", "カウンセリング", "アフターサポート"],
+        // infoHeading: "情報",
+        // info: ["よくある質問", "プライバシーポリシー", "会社概要"],
+        // copyright: `© ${new Date().getFullYear()} StudyStay Japan. All rights reserved.`,
+        // builtBy: "Built with ❤️ using React and CSS.",
       },
     },
     en: {
@@ -129,7 +125,7 @@ const App = () => {
         languageToggle: "日本語", // 日本語に切り替えるボタンのテキスト
       },
       hero: {
-        title: "New Learning Style:",
+        title: "A New Way of Learning:",
         subtitle: "Domestic Study Abroad",
         description: "Experience authentic language study abroad in Japan without going overseas. We'll match you with the perfect domestic study abroad program.",
         findProgram: "Book a 1 on 1 meeting",
@@ -139,19 +135,15 @@ const App = () => {
         title: "What is Domestic Study Abroad?",
         description: "Domestic study abroad is a new learning style where you can experience language learning and cultural exchange in Japan, just like studying abroad.",
         features: [
-          { icon: <Shield className="icon-green" size={40} />, title: "Safety & Security", description: "Since it's held in Japan, even first-timers can participate with peace of mind. Support during emergencies is also comprehensive." },
-          { icon: <Users className="icon-purple" size={40} />, title: "Diverse Interactions", description: "Achieve real cross-cultural experiences in Japan through interaction with foreigners and international students." },
-          { icon: <DollarSign className="icon-yellow" size={40} />, title: "Cost Efficiency", description: "Significantly reduce costs compared to overseas study abroad while achieving equivalent learning outcomes." },
+          { icon: <MapPinHouse className="icon-green" size={40} />, title: "Experience different cultures in Japan", description: "Overseas feeling while still being in Japan" },
+          { icon: <Users className="icon-purple" size={40} />, title: "Starting form 12 years old", description: "Exchange programs from 12 years old." },
         ],
       },
       experience: {
-        title: "Program Experience",
-        description: "Introducing the actual domestic study abroad program. We promise a fulfilling learning environment and enjoyable experiences.",
+        title: "Exchange related programs",
+        description: "We do many other things related to exchange, like our Podcast, Instagram, etc.",
         cards: [
-          { imageSrc: "https://placehold.co/400x250/F0F8FF/333333?text=Small+Class", title: "Small Group Lessons", description: "Small group classes providing thorough instruction to each individual." },
-          { imageSrc: "https://placehold.co/400x250/F5FFFA/333333?text=Culture+Exp", title: "Cultural Experiences", description: "You can enjoy various cultural experiences such as cooking classes and calligraphy." },
-          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Activities", title: "Activities", description: "Learn practical English through activities outside of class." },
-          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "Accommodation", description: "Comfortable and clean facilities are available for your peace of mind." },
+          { imageSrc: ryugakuSenpai, title: "Podcast", description: "Please give our Podcast a listen!", link:"https://open.spotify.com/show/2vUNaAl1dqYFfzONyGGQxl?si=8g0jREPLSXGqrr7fHDuFJw&fbclid=PAZXh0bgNhZW0CMTEAAafxNtpAvKFRDM9HREaxmoLmEsctDKjVGxLbTDjCeXUcMSxNXo9btJL6Sb_zZQ_aem_AerUO8rJ9OCFK059nolUXQ&nd=1&dlsi=c865c31463f14bed"},
         ],
       },
       example: { // 'example' を 'experienceExamples' に変更して、既存の 'experience' セクションと区別しやすくしました
@@ -165,9 +157,7 @@ const App = () => {
       testimonials: {
         title: "Student Voices",
         cards: [
-          { name: "Misaki Tanaka", title: "University Student (2nd Year)", rating: 5, quote: "I longed for studying abroad but was worried about costs and safety. Domestic study abroad was truly a great choice! The foreign teachers were kind, and I gained confidence in my English." },
-          { name: "Kenta Sato", title: "High School Student (3rd Year)", rating: 5, quote: "It was a short one-week program, but I had a very rich experience. I made friends my age, and we still keep in touch. In the future, I want to challenge myself with a full-fledged overseas study abroad!" },
-          { name: "Rie Yamada", title: "Company Employee", rating: 5, quote: "I participated because I needed English for work. I got practical conversation practice, and my TOEIC score significantly improved! I can now use English confidently at work." },
+          { name: "Coming soon", title: "Coming soon", rating: 5, quote: "coming soon" },
         ],
       },
       pricing: {
@@ -185,17 +175,17 @@ const App = () => {
         title: "Access & Contact",
         description: "Please feel free to contact us with any questions or applications.",
         infoTitle: "Contact Information",
-        addressLabel: "Address:",
-        address: "5F StudyStay Japan Bldg., 1-11 Jingumae, Shibuya-ku, Tokyo 150-0001, Japan",
-        phoneLabel: "Phone Number:",
-        phone: "03-1234-5678",
-        phoneHours: "(Weekdays 9:00-18:00 JST)",
+        // addressLabel: "Address:",
+        // address: "5F StudyStay Japan Bldg., 1-11 Jingumae, Shibuya-ku, Tokyo 150-0001, Japan",
+        // phoneLabel: "Phone Number:",
+        // phone: "03-1234-5678",
+        // phoneHours: "(Weekdays 9:00-18:00 JST)",
         emailLabel: "Email Address:",
-        email: "info@studystay-japan.com",
-        accessLabel: "Access:",
-        access: "3-minute walk from Harajuku Station (JR Yamanote Line) 1-minute walk from Meiji-jingumae Station (Tokyo Metro)",
-        mapAlt: "Map of location",
-        mapError: "Map load error",
+        email: "infovideory@gmail.com",
+        // accessLabel: "Access:",
+        // access: "3-minute walk from Harajuku Station (JR Yamanote Line) 1-minute walk from Meiji-jingumae Station (Tokyo Metro)",
+        // mapAlt: "Map of location",
+        // mapError: "Map load error",
       },
       contactForm: {
         title: "Contact Form",
@@ -216,12 +206,12 @@ const App = () => {
       },
       footer: {
         logo: "StudyStay Japan",
-        servicesHeading: "Services",
-        services: ["Domestic Study Abroad Programs", "Matching Service", "Counseling", "Aftercare Support"],
-        infoHeading: "Information",
-        info: ["FAQ", "Privacy Policy", "Company Profile"],
-        copyright: `© ${new Date().getFullYear()} StudyStay Japan. All rights reserved.`,
-        builtBy: "Built with ❤️ using React and CSS.",
+        // servicesHeading: "Services",
+        // services: ["Domestic Study Abroad Programs", "Matching Service", "Counseling", "Aftercare Support"],
+        // infoHeading: "Information",
+        // info: ["FAQ", "Privacy Policy", "Company Profile"],
+        // copyright: `© ${new Date().getFullYear()} StudyStay Japan. All rights reserved.`,
+        // builtBy: "Built with ❤️ using React and CSS.",
       },
     },
     };
@@ -365,13 +355,17 @@ const App = () => {
                 imageSrc={card.imageSrc}
                 title={card.title}
                 description={card.description}
+                link = {card.link}
               />
             ))}
           </div>
         </div>
       </section>
-
-     
+    </>
+  )
+  
+  const ExampleSection = () => (
+  <>
       <section id="experience" className="section experience-section">
         <div class="container">
           <h2 className="section-title">{currentContent.example.title}</h2>
@@ -394,12 +388,14 @@ const App = () => {
     </>
   );
   // 体験特徴カードヘルパーコンポーネント
-  const ExperienceFeatureCard = ({ imageSrc, title, description }) => (
+  const ExperienceFeatureCard = ({ imageSrc, title, description, link }) => (
     <div className="experience-feature-card">
-      <img src={imageSrc} alt={title} className="card-image" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/CCCCCC/666666?text=Image+Error"; }} />
+      <img src={imageSrc} alt={title} className="card-image-experience-feature" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/CCCCCC/666666?text=Image+Error"; }} />
+      {/* <img src={imageSrc1} alt={title1} className="card-image-experience-feature" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/CCCCCC/666666?text=Image+Error"; }} /> */}
       <div className="card-content">
         <h3 className="card-title">{title}</h3>
         <p className="card-description">{description}</p>
+        <a href={link} className='examplebutton' target="_blank" rel="noopener noreferrer"><Link2/></a>
       </div>
     </div>
   );
@@ -519,7 +515,7 @@ const App = () => {
           <div className="contact-details-card">
             <h3 className="card-title">{currentContent.contactInfo.infoTitle}</h3>
             <div className="contact-item-list">
-              <div className="contact-item">
+              {/* <div className="contact-item">
                 <Landmark className="contact-icon blue" size={24} />
                 <div>
                   <p className="contact-label">{currentContent.contactInfo.addressLabel}</p>
@@ -533,7 +529,7 @@ const App = () => {
                   <p>{currentContent.contactInfo.phone}</p>
                   <p>{currentContent.contactInfo.phoneHours}</p>
                 </div>
-              </div>
+              </div> */}
               <div className="contact-item">
                 <MailIcon className="contact-icon purple" size={24} />
                 <div>
@@ -541,25 +537,26 @@ const App = () => {
                   <p>{currentContent.contactInfo.email}</p>
                 </div>
               </div>
-              <div className="contact-item">
-                <Landmark className="contact-icon red" size={24} /> {/* アクセス用にLandmarkを再利用（より具体的なアイコンがあれば変更可能） */}
-                <div>
-                  <p className="contact-label">{currentContent.contactInfo.accessLabel}</p>
-                  <p>{currentContent.contactInfo.access}</p>
-                </div>
-              </div>
+              <ContactForm/>
+              {/* <div className="contact-item"> */}
+                {/* <Landmark className="contact-icon red" size={24} /> アクセス用にLandmarkを再利用（より具体的なアイコンがあれば変更可能） */}
+                {/* <div> */}
+                  {/* <p className="contact-label">{currentContent.contactInfo.accessLabel}</p> */}
+                  {/* <p>{currentContent.contactInfo.access}</p> */}
+                {/* </div> */}
+              {/* </div> */}
             </div>
           </div>
 
           {/* 地図のプレースホルダーまたは追加情報 */}
-          <div className="map-placeholder-card">
+          {/* <div className="map-placeholder-card">
             <img
               src="https://placehold.co/400x300/E0F2F7/333333?text=Map+Placeholder"
               alt={currentContent.contactInfo.mapAlt}
               className="map-image"
               onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x300/E0F2F7/333333?text=" + encodeURIComponent(currentContent.contactInfo.mapError); }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
@@ -583,7 +580,7 @@ const App = () => {
       <div className="container footer-content">
         <div className="footer-links-grid">
           <div className="footer-logo">{currentContent.footer.logo}</div>
-          <div className="footer-column">
+          {/* <div className="footer-column">
             <h4 className="footer-heading">{currentContent.footer.servicesHeading}</h4>
             {currentContent.footer.services.map((service, index) => (
               <a key={index} href="#" className="footer-link">{service}</a>
@@ -598,7 +595,8 @@ const App = () => {
         </div>
         <hr className="footer-divider" />
         <p className="footer-copyright">{currentContent.footer.copyright}</p>
-        <p className="footer-built-by">{currentContent.footer.builtBy}</p>
+        <p className="footer-built-by">{currentContent.footer.builtBy}</p> */}
+      </div>
       </div>
     </footer>
   );
@@ -616,11 +614,13 @@ const App = () => {
       <main className="main-content">
         <HeroSection currentContent={currentContent}/>
         <WhatIsStudyStay />
+        <ExampleSection />
         <ExperienceSection />
-        <Testimonials />
+        
+        {/* <Testimonials /> */}
         {/* <PricingPlans /> */}
         <ContactInfoSection />
-        <ContactForm />
+        {/* <ContactForm /> */}
       </main>
 
       <Footer />
