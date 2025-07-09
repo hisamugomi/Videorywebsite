@@ -2,11 +2,13 @@
 import SVGIcon from './assets/earth-svgrepo-com.svg?react'
 import React, { useState } from 'react';
 // lucide-reactから必要なアイコンをインポート
-import { Search, PlayCircle, Shield, Users, MapPinHouse, DollarSign, Landmark, Phone, Mail as MailIcon, X, Menu, Link2} from 'lucide-react';
+import { Search, PlayCircle, Shield, Users, MapPinHouse, DollarSign, Landmark, Phone, Mail as MailIcon, X, Menu, Link2, Bold} from 'lucide-react';
 import './app.css'; // style.cssをインポート
 // import {content} from './Prompts.jsx'
 import HeroSection from "./HeroSection.jsx" 
 import ryugakuSenpai from "./assets/スクリーンショット 2025-07-09 093311.png"
+import kumeJima from "./assets/Tounnahajou-Kumejima,_Okinawa（登武那覇城からみる奥武島、はての浜）DSCF6533.jpg"
+import karuhomestay from "./assets/Karuizawa img homestay.webp"
 // import classNames from 'classnames';
 
 // メインのAppコンポーネント
@@ -50,8 +52,8 @@ const App = () => {
         title: "国内留学の例",
         description: "実際の国内留学プログラムの様子をご紹介します。充実した学習環境と楽しい体験をお約束します。",
         cards: [
-          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Accomodation", title: "久米島", description: "日本にいながら英語、異文化、に触れ合い南国で今まで行ったことのない場所に行き触れ合ったことのない文化に出会うチャンス。", link:"https://www.kume-homestay.com/" },
-          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "軽井沢", description: "日常の中で自然に英語が息づく「リアルな英語体験」。暮らしの中での交流や実践を通して、実践的な英語力を育みます。 ", link:"https://karuizawahomestay.com/"},
+          { imageSrc: kumeJima, title: "久米島", description: "日本にいながら英語、異文化、に触れ合い南国で今まで行ったことのない場所に行き触れ合ったことのない文化に出会うチャンス。", link:"https://www.kume-homestay.com/" },
+          { imageSrc: karuhomestay, title: "軽井沢", description: "日常の中で自然に英語が息づく「リアルな英語体験」。暮らしの中での交流や実践を通して、実践的な英語力を育みます。 ", link:"https://karuizawahomestay.com/"},
         ],
       },
       testimonials: {
@@ -150,8 +152,8 @@ const App = () => {
         title: "Examples of Domestic Study Abroad",
         description: "Here are some examples of actual domestic study abroad programs. We promise a fulfilling learning environment and enjoyable experiences.",
         cards: [
-          { imageSrc: "https://placehold.co/400x250/FFF0F5/333333?text=Accomodation", title: "Kume Island", description: "An opportunity to experience English and different cultures in a tropical paradise within Japan, encountering cultures you've never met before.", link:"https://www.kume-homestay.com/" },
-          { imageSrc: "https://placehold.co/400x250/E6E6FA/333333?text=Accommodation", title: "Karuizawa", description: "A 'real English experience' where English naturally thrives in daily life. Develop practical English skills through daily interactions and practice.", link:"https://karuizawahomestay.com/"},
+          { imageSrc: kumeJima, title: "Kume Island", description: "An opportunity to experience English and different cultures in a tropical paradise within Japan, encountering cultures you've never met before.", link:"https://www.kume-homestay.com/" },
+          { imageSrc: karuhomestay, title: "Karuizawa", description: "A 'real English experience' where English naturally thrives in daily life. Develop practical English skills through daily interactions and practice.", link:"https://karuizawahomestay.com/"},
         ],
       },
       testimonials: {
@@ -534,7 +536,7 @@ const App = () => {
                 <MailIcon className="contact-icon purple" size={24} />
                 <div>
                   <p className="contact-label">{currentContent.contactInfo.emailLabel}</p>
-                  <p>{currentContent.contactInfo.email}</p>
+                  <h3>{currentContent.contactInfo.email}</h3>
                 </div>
               </div>
               <ContactForm/>
