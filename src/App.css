@@ -180,6 +180,8 @@ body {
   
   .svgicon {
   padding-right: 5px;
+  color: white;
+  fill: white;
 }
 
 /* .site-logo:hover {
