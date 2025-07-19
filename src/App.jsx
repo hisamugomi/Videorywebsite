@@ -9,6 +9,8 @@ import HeroSection from "./HeroSection.jsx"
 import ryugakuSenpai from "./assets/スクリーンショット 2025-07-09 093311.png"
 import kumeJima from "./assets/Tounnahajou-Kumejima,_Okinawa（登武那覇城からみる奥武島、はての浜）DSCF6533.jpg"
 import karuhomestay from "./assets/Karuizawa img homestay.webp"
+import talkingVideo from "./assets/5822487-hd_1080_1920_25fps.mp4"
+
 // import classNames from 'classnames';
 
 // メインのAppコンポーネント
@@ -287,6 +289,15 @@ const App = () => {
   // ヒーローセクション
   const HeroSection = () => (
     <section id="home" className="hero-section">
+      <video
+              className="video-bg"
+              src={talkingVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              />
+            <div className="video-overlay"/>
       <div className="hero-pattern"></div>
       <div className="container hero-content">
         <h1 className="hero-title1">
@@ -307,29 +318,35 @@ const App = () => {
           </button>
         </div> */}
       </div>
+      
     </section>
   );
 
+  
+
   // "国内留学とは" セクション
   const WhatIsStudyStay = () => (
-    <section id="what-is" className="section what-is-section">
+    <>
+    <section id="what-is" className="what-is-section">
+          
       <div className="container">
-        <h2 className="section-title">{currentContent.whatIsStudyStay.title}</h2>
+        <h2 className="section-title what-is-title">{currentContent.whatIsStudyStay.title}</h2>
         <p className="section-description">
           {currentContent.whatIsStudyStay.description}
         </p>
         <div className="feature-benefit-cards">
           {currentContent.whatIsStudyStay.features.map((feature, index) => (
             <FeatureBenefitCard
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
+            key={index}
+            icon={feature.icon}
+            title={feature.title}
+            description={feature.description}
             />
           ))}
         </div>
       </div>
     </section>
+          </>
   );
 
   // 特徴/利点カードヘルパーコンポーネント

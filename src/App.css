@@ -321,10 +321,12 @@ body {
     background: linear-gradient(to bottom right, var(--primary-blue), #8A2BE2);
     color: var(--white);
     padding: 2rem 1rem;
+    padding-bottom: 10rem;
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    z-index: 3;
 }
 
 @media (min-width: 768px) {
@@ -439,12 +441,48 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
 
 /* 国内留学とは セクション */
 .what-is-section {
-    margin-top: -4rem; /* ヒーローセクションの上に引き上げる */
-    display: flex;
-    grid-template-columns: auto;
-    justify-content: center;
-    z-index: 20;
+    margin-top: -2rem; /* ヒーローセクションの上に引き上げる */
+    padding-top: 2rem;
+    position: relative;
+    /* display: block; */
+    /* grid-template-columns: auto; */
+    justify-content: left;
+    z-index: 2;
+    min-height: 500px;
+    overflow: hidden;
+    border-radius: 0.5rem; /* rounded-xl */
 }
+
+.what-is-section .container {
+    position: relative;
+    z-index: 2;
+    .section-title{
+    text-align: center;
+    }
+  }
+
+
+.video-bg {
+    position: absolute;
+    object-position: 50% 25%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 1;
+  }
+
 
 @media (min-width: 640px) {
 
@@ -1013,3 +1051,4 @@ background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 
 .footer-built-by {
     margin-top: 0;
 }
+
